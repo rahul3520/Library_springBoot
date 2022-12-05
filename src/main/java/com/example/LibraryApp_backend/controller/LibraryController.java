@@ -13,4 +13,10 @@ public class LibraryController {
     {
         return "books entry page";
     }
+
+    @PostMapping("/booksIssue")
+    public String booksIssue()
+    {
+        return "books issue page";
+    }
 }
