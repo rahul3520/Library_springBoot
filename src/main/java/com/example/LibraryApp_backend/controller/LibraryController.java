@@ -26,5 +26,11 @@ public class LibraryController {
         return "book delete page";
     }
 
+    @PostMapping("/bookSearch")
+    public String bookSearch()
+    {
+        return "book search page";
+    }
+
 
 }
