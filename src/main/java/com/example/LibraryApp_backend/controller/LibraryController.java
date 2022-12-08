@@ -43,25 +43,44 @@ public class LibraryController {
         return(List<Library>) bdao.findAll();
     }
 
-
-    @PostMapping("/booksIssue")
-    public String booksIssue()
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/bookSearch",produces = "application/json",consumes = "application/json")
+    public List<Library> bookSearch(@RequestBody Library l)
     {
-        return "books issue page";
+        String bname=String.valueOf(l.getBookName());
+        System.out.println(bname);
+
+        return(List<Library>) bdao.BookSearch(l.getBookName());
     }
 
-    @PostMapping("/bookDelete")
-    public String bookDelete()
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/bookDelete",produces = "application/json",consumes = "application/json")
+    public HashMap<String,String> bookDelete(@RequestBody Library l)
     {
-        return "book delete page";
+        String bname=String.valueOf(l.getBookName());
+        System.out.println(bname);
+
+        bdao.BookDelete(l.getBookName());
+
+        HashMap<String,String> map=new HashMap<>();
+
+        map.put("status","success");
+
+        return map;
     }
 
-    @PostMapping("/bookSearch")
-    public String bookSearch()
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/booksIssue",produces = "application/json",consumes = "application/json")
+    public List<Library> booksIssue(@RequestBody Library l)
     {
-        return "book search page";
+        String bname=String.valueOf(l.getBookName());
+        System.out.println(bname);
+
+        return(List<Library>) bdao.BookIssue(l.getBookName());
+
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/editBook")
     public String editBook()
     {
